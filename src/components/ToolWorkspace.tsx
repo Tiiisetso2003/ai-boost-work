@@ -236,9 +236,9 @@ export function ToolWorkspace({
       </div>
 
       {history.length > 0 && (
-        <div className="mt-6">
+        <div className="mt-5">
           <p className="label-mono mb-3">Recent outputs</p>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {history.slice(0, 6).map((entry) => (
               <button
                 key={entry.id}
@@ -246,7 +246,7 @@ export function ToolWorkspace({
                   setOutput(entry.output);
                   setError(null);
                 }}
-                className="animate-rise rounded-2xl bg-panel/40 p-4 text-left ring-1 ring-foreground/8 backdrop-blur-xl transition hover:bg-panel/70 hover:ring-acc/30"
+                className="animate-rise rounded-2xl bg-panel p-4 text-left ring-1 ring-line transition hover:bg-panel2 hover:ring-acc/30"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] uppercase text-acc">{entry.tool}</span>
