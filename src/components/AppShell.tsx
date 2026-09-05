@@ -21,20 +21,36 @@ function AuroraBackdrop() {
   );
 }
 
-function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
+function NavList({
+  onNavigate,
+  orientation = "horizontal",
+}: {
+  onNavigate?: (() => void) | undefined;
+  orientation?: "horizontal" | "vertical";
+}) {
+  const base =
+    orientation === "horizontal"
+      ? "flex items-center gap-2 rounded-full px-3 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+      : "flex items-center gap-3 rounded-lg px-3 py-2.5 text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground";
+  const active =
+    orientation === "horizontal"
+      ? "flex items-center gap-2 rounded-full px-3 py-1.5 text-[13px] text-foreground bg-foreground/5 ring-1 ring-foreground/10"
+      : "flex items-center gap-3 rounded-lg px-3 py-2.5 text-foreground bg-foreground/5 ring-1 ring-foreground/10";
+
   return (
-    <nav className="mt-6 space-y-0.5">
+    <nav
+      className={
+        orientation === "horizontal" ? "flex flex-wrap items-center gap-1" : "mt-6 space-y-0.5"
+      }
+    >
       {NAV.map((item) => (
         <Link
           key={item.to}
           to={item.to}
           onClick={onNavigate}
           activeOptions={{ exact: item.to === "/" }}
-          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
-          activeProps={{
-            className:
-              "flex items-center gap-3 rounded-lg px-3 py-2.5 text-foreground bg-foreground/5 ring-1 ring-foreground/10",
-          }}
+          className={base}
+          activeProps={{ className: active }}
         >
           {({ isActive }) => (
             <>
@@ -51,33 +67,17 @@ function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   );
 }
 
-function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
+function Brand() {
   return (
-    <div className="flex h-full flex-col p-4">
-      <div className="flex items-center gap-2.5 px-2 py-2">
-        <div className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-acc to-acc2 font-display font-bold text-background">
-          V
-        </div>
-        <div className="leading-tight">
-          <p className="font-display text-[15px] font-semibold tracking-tight">Veridian</p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-            Work OS
-          </p>
-        </div>
+    <div className="flex items-center gap-2.5">
+      <div className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-acc to-acc2 font-display font-bold text-background">
+        V
       </div>
-
-      <NavList onNavigate={onNavigate} />
-
-      <div className="mt-auto rounded-xl bg-panel2/60 p-3 ring-1 ring-foreground/5">
-        <div className="flex items-center gap-2">
-          <div className="grid size-8 place-items-center rounded-full bg-gradient-to-br from-acc2 to-acc font-display text-[11px] font-semibold text-background">
-            AR
-          </div>
-          <div className="leading-tight">
-            <p className="text-[13px] font-medium">Amara Reyes</p>
-            <p className="font-mono text-[10px] text-muted-foreground">amara@veridian</p>
-          </div>
-        </div>
+      <div className="leading-tight">
+        <p className="font-display text-[15px] font-semibold tracking-tight">Veridian</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+          Work OS
+        </p>
       </div>
     </div>
   );
@@ -97,39 +97,49 @@ export function AppShell({
   return (
     <>
       <AuroraBackdrop />
-      <div className="flex min-h-screen bg-background/60 font-body text-sm text-foreground backdrop-blur-2xl">
-        <aside className="hidden w-60 shrink-0 border-r border-line/80 bg-panel/40 backdrop-blur-xl md:block">
-          <SidebarInner />
-        </aside>
+      <div className="flex min-h-screen flex-col bg-background/60 font-body text-sm text-foreground backdrop-blur-2xl">
+        <header className="sticky top-0 z-20 border-b border-line/70 bg-background/60 backdrop-blur-xl">
+          <div className="mx-auto flex w-full max-w-[1500px] items-center gap-4 px-4 py-3 sm:px-6">
+            <Brand />
 
-        {mobileOpen && (
-          <div className="fixed inset-0 z-30 md:hidden">
-            <button
-              aria-label="Close navigation"
-              className="absolute inset-0 bg-background/70 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-            />
-            <div className="absolute inset-y-0 left-0 w-64 border-r border-line/80 bg-panel/95 backdrop-blur-xl">
-              <SidebarInner onNavigate={() => setMobileOpen(false)} />
+            <div className="hidden flex-1 lg:block">
+              <NavList />
+            </div>
+
+            <div className="ml-auto flex items-center gap-3">
+              <span className="hidden rounded-full bg-acc/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-acc ring-1 ring-acc/20 sm:inline">
+                {badge}
+              </span>
+              <div className="hidden items-center gap-2 sm:flex">
+                <div className="grid size-8 place-items-center rounded-full bg-gradient-to-br from-acc2 to-acc font-display text-[11px] font-semibold text-background">
+                  AR
+                </div>
+                <div className="hidden leading-tight md:block">
+                  <p className="text-[13px] font-medium">Amara Reyes</p>
+                  <p className="font-mono text-[10px] text-muted-foreground">amara@veridian</p>
+                </div>
+              </div>
+              <button
+                className="grid size-8 place-items-center rounded-lg text-muted-foreground ring-1 ring-foreground/10 lg:hidden"
+                onClick={() => setMobileOpen((o) => !o)}
+                aria-label="Toggle navigation"
+              >
+                {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+              </button>
             </div>
           </div>
-        )}
 
-        <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-line/70 bg-background/50 px-4 py-3.5 backdrop-blur-xl sm:px-6">
-            <button
-              className="grid size-8 place-items-center rounded-lg text-muted-foreground ring-1 ring-foreground/10 md:hidden"
-              onClick={() => setMobileOpen((o) => !o)}
-              aria-label="Toggle navigation"
-            >
-              {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-            </button>
-            <div className="font-display text-[15px] font-semibold tracking-tight">{title}</div>
-            <span className="hidden rounded-full bg-acc/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-acc ring-1 ring-acc/20 sm:inline">
-              {badge}
-            </span>
-          </header>
+          {mobileOpen && (
+            <div className="border-t border-line/70 px-4 pb-4 lg:hidden">
+              <NavList orientation="vertical" onNavigate={() => setMobileOpen(false)} />
+            </div>
+          )}
+        </header>
 
+        <div className="mx-auto flex w-full max-w-[1500px] min-w-0 flex-1 flex-col px-0">
+          <div className="px-4 pt-4 font-display text-[15px] font-semibold tracking-tight sm:px-6">
+            {title}
+          </div>
           {children}
         </div>
       </div>
