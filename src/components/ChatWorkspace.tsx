@@ -131,13 +131,13 @@ function ChatSurface({
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-4 p-4 sm:p-6 lg:flex-row">
       {/* Threads */}
-      <div className="w-full shrink-0 rounded-2xl bg-panel/40 p-3 ring-1 ring-foreground/8 backdrop-blur-xl lg:w-64">
+      <div className="w-full shrink-0 rounded-2xl bg-panel p-3 ring-1 ring-line lg:w-64">
         <div className="flex items-center justify-between px-1 pb-2">
           <p className="label-mono">Conversations</p>
           <button
             onClick={onNewThread}
             aria-label="New conversation"
-            className="grid size-7 place-items-center rounded-lg text-acc ring-1 ring-acc/25 transition hover:bg-acc/10"
+            className="grid size-7 place-items-center rounded-lg text-acc ring-1 ring-line transition hover:bg-acc/10"
           >
             <MessageSquarePlus className="size-3.5" />
           </button>
@@ -149,9 +149,7 @@ function ChatSurface({
               <li
                 key={thread.id}
                 className={`group flex items-center gap-1 rounded-lg px-2 py-2 transition ${
-                  active
-                    ? "bg-foreground/5 ring-1 ring-foreground/10"
-                    : "hover:bg-foreground/5"
+                  active ? "bg-panel2 ring-1 ring-line" : "hover:bg-panel2/60"
                 }`}
               >
                 <button
@@ -188,12 +186,12 @@ function ChatSurface({
       </div>
 
       {/* Chat */}
-      <section className="flex min-h-[70vh] min-w-0 flex-1 flex-col rounded-2xl bg-panel/50 ring-1 ring-foreground/8 backdrop-blur-xl">
+      <section className="flex min-h-[70vh] min-w-0 flex-1 flex-col rounded-2xl bg-panel ring-1 ring-line">
         <Conversation className="flex-1">
           <ConversationContent className="px-4 py-5 sm:px-6">
             {messages.length === 0 && (
               <div className="animate-rise py-10 text-center">
-                <div className="mx-auto grid size-11 place-items-center rounded-xl bg-gradient-to-br from-acc to-acc2 font-display text-lg font-bold text-background">
+                <div className="mx-auto grid size-11 place-items-center rounded-xl bg-acc font-display text-lg font-bold text-background shadow-lg shadow-acc/10">
                   V
                 </div>
                 <h2 className="mt-4 font-display text-[20px] font-bold tracking-tight">
@@ -207,7 +205,7 @@ function ChatSurface({
                     <button
                       key={s}
                       onClick={() => submit(s)}
-                      className="rounded-full bg-panel2/80 px-3 py-1.5 text-[12px] text-muted-foreground ring-1 ring-foreground/8 transition hover:text-foreground hover:ring-acc/30"
+                      className="rounded-full bg-panel2 px-3 py-1.5 text-[12px] text-muted-foreground ring-1 ring-line transition hover:text-foreground hover:ring-acc/30"
                     >
                       {s}
                     </button>
