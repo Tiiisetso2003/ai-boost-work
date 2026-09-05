@@ -70,8 +70,7 @@ function Dashboard() {
     <AppShell title="Dashboard" badge="Workspace">
       <main className="max-w-[1500px] p-4 sm:p-6">
         <section className="animate-rise overflow-hidden rounded-2xl bg-panel/50 p-6 ring-1 ring-foreground/8 backdrop-blur-xl sm:p-8">
-          <p className="label-mono">Good to see you, Amara</p>
-          <h1 className="mt-3 max-w-2xl text-balance font-display text-[26px] font-bold leading-tight tracking-tight sm:text-[34px]">
+          <h1 className="max-w-2xl text-balance font-display text-[26px] font-bold leading-tight tracking-tight sm:text-[34px]">
             Five assistants for the work that eats your day.
           </h1>
           <p className="mt-3 max-w-xl text-pretty text-[14px] leading-relaxed text-muted-foreground">
