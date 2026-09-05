@@ -5,7 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Aurora Glass design system — dark glassmorphic productivity console.
+ * Prism Glass design system — structured dark glass workspace.
+ * Clean panel separation, crisp borders, and calm depth.
  * All colors are oklch tokens. Never hardcode colors in components.
  */
 
@@ -59,36 +60,36 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.875rem;
 
-  --background: oklch(0.148 0.014 277);
-  --foreground: oklch(0.943 0.008 272);
-  --card: oklch(0.199 0.017 275);
-  --card-foreground: oklch(0.943 0.008 272);
-  --popover: oklch(0.232 0.02 274);
-  --popover-foreground: oklch(0.943 0.008 272);
+  --background: oklch(0.115 0.012 277);
+  --foreground: oklch(0.945 0.006 272);
+  --card: oklch(0.165 0.016 275);
+  --card-foreground: oklch(0.945 0.006 272);
+  --popover: oklch(0.195 0.018 274);
+  --popover-foreground: oklch(0.945 0.006 272);
 
-  --primary: oklch(0.816 0.126 205);
-  --primary-foreground: oklch(0.148 0.014 277);
-  --secondary: oklch(0.232 0.02 274);
-  --secondary-foreground: oklch(0.943 0.008 272);
-  --muted: oklch(0.232 0.02 274);
-  --muted-foreground: oklch(0.635 0.026 273);
-  --accent: oklch(0.688 0.155 279);
-  --accent-foreground: oklch(0.148 0.014 277);
-  --destructive: oklch(0.653 0.19 22);
+  --primary: oklch(0.78 0.118 205);
+  --primary-foreground: oklch(0.115 0.012 277);
+  --secondary: oklch(0.205 0.02 274);
+  --secondary-foreground: oklch(0.945 0.006 272);
+  --muted: oklch(0.205 0.02 274);
+  --muted-foreground: oklch(0.58 0.022 273);
+  --accent: oklch(0.65 0.14 279);
+  --accent-foreground: oklch(0.115 0.012 277);
+  --destructive: oklch(0.63 0.18 22);
   --destructive-foreground: oklch(0.965 0.008 272);
 
-  --border: oklch(0.318 0.028 271);
-  --input: oklch(0.318 0.028 271);
-  --ring: oklch(0.816 0.126 205);
+  --border: oklch(0.26 0.024 271);
+  --input: oklch(0.26 0.024 271);
+  --ring: oklch(0.78 0.118 205);
 
-  --panel: oklch(0.199 0.017 275);
-  --panel2: oklch(0.232 0.02 274);
-  --line: oklch(0.318 0.028 271);
-  --acc: oklch(0.816 0.126 205);
-  --acc2: oklch(0.688 0.155 279);
-  --acc3: oklch(0.78 0.12 178);
+  --panel: oklch(0.155 0.014 275);
+  --panel2: oklch(0.2 0.018 274);
+  --line: oklch(0.27 0.024 271);
+  --acc: oklch(0.78 0.118 205);
+  --acc2: oklch(0.62 0.132 279);
+  --acc3: oklch(0.75 0.11 178);
 }
 
 @keyframes rise {

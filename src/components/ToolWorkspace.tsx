@@ -25,7 +25,7 @@ export function Field({ label, children }: { label: string; children: ReactNode 
 }
 
 const controlClass =
-  "w-full rounded-lg bg-panel2/80 px-3 py-2.5 text-[13px] text-foreground ring-1 ring-foreground/8 outline-none transition focus:ring-acc/40";
+  "w-full rounded-lg bg-panel2 px-3 py-2.5 text-[13px] text-foreground ring-1 ring-line outline-none transition focus:ring-2 focus:ring-acc/40";
 
 export function Select({
   value,
@@ -164,15 +164,15 @@ export function ToolWorkspace({
         <p className="mt-1 text-[13px] text-muted-foreground">{subheading}</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-        <section className="animate-rise rounded-2xl bg-panel/50 p-5 ring-1 ring-foreground/8 backdrop-blur-xl lg:col-span-5">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+        <section className="animate-rise rounded-2xl bg-panel p-5 ring-1 ring-line lg:col-span-5">
           <PanelLabel>Prompt inputs</PanelLabel>
           <div className="space-y-4">{children}</div>
           <div className="mt-5 flex items-center gap-3">
             <button
               onClick={handleRun}
               disabled={loading || disabled}
-              className="rounded-lg bg-gradient-to-br from-acc to-acc2 px-4 py-2.5 text-[13px] font-semibold text-background ring-1 ring-foreground/10 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-lg bg-acc px-4 py-2.5 text-[13px] font-semibold text-background ring-1 ring-acc/30 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading ? "Working…" : submitLabel}
             </button>
@@ -184,7 +184,7 @@ export function ToolWorkspace({
           </div>
         </section>
 
-        <section className="animate-rise rounded-2xl bg-panel/50 p-5 ring-1 ring-foreground/8 backdrop-blur-xl lg:col-span-7">
+        <section className="animate-rise rounded-2xl bg-panel p-5 ring-1 ring-line lg:col-span-7">
           <div className="mb-4 flex items-center gap-3">
             <p className="label-mono">AI output</p>
             {loading && (
@@ -198,7 +198,7 @@ export function ToolWorkspace({
             {output && !loading && (
               <button
                 onClick={handleCopy}
-                className="ml-auto flex items-center gap-1.5 rounded-lg bg-panel2/80 px-3 py-1.5 text-[12px] text-foreground ring-1 ring-foreground/8 transition hover:bg-foreground/10"
+                className="ml-auto flex items-center gap-1.5 rounded-lg bg-panel2 px-3 py-1.5 text-[12px] text-foreground ring-1 ring-line transition hover:bg-foreground/6"
               >
                 {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
                 {copied ? "Copied" : "Copy"}
@@ -206,7 +206,7 @@ export function ToolWorkspace({
             )}
           </div>
 
-          <div className="min-h-[220px] rounded-xl bg-background/40 p-4 ring-1 ring-foreground/5">
+          <div className="min-h-[220px] rounded-xl bg-background p-4 ring-1 ring-line">
             {loading && (
               <div className="space-y-2">
                 <div className="skeleton-line h-3 w-11/12 rounded" />
@@ -236,9 +236,9 @@ export function ToolWorkspace({
       </div>
 
       {history.length > 0 && (
-        <div className="mt-6">
+        <div className="mt-5">
           <p className="label-mono mb-3">Recent outputs</p>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {history.slice(0, 6).map((entry) => (
               <button
                 key={entry.id}
@@ -246,7 +246,7 @@ export function ToolWorkspace({
                   setOutput(entry.output);
                   setError(null);
                 }}
-                className="animate-rise rounded-2xl bg-panel/40 p-4 text-left ring-1 ring-foreground/8 backdrop-blur-xl transition hover:bg-panel/70 hover:ring-acc/30"
+                className="animate-rise rounded-2xl bg-panel p-4 text-left ring-1 ring-line transition hover:bg-panel2 hover:ring-acc/30"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] uppercase text-acc">{entry.tool}</span>

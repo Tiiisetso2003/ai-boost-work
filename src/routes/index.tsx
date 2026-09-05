@@ -69,7 +69,7 @@ function Dashboard() {
   return (
     <AppShell title="Dashboard" badge="Workspace">
       <main className="max-w-[1500px] p-4 sm:p-6">
-        <section className="animate-rise overflow-hidden rounded-2xl bg-panel/50 p-6 ring-1 ring-foreground/8 backdrop-blur-xl sm:p-8">
+        <section className="animate-rise overflow-hidden rounded-2xl bg-panel p-6 ring-1 ring-line sm:p-8">
           <h1 className="max-w-2xl text-balance font-display text-[26px] font-bold leading-tight tracking-tight sm:text-[34px]">
             Five assistants for the work that eats your day.
           </h1>
@@ -80,25 +80,25 @@ function Dashboard() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/email"
-              className="rounded-lg bg-gradient-to-br from-acc to-acc2 px-4 py-2.5 text-[13px] font-semibold text-background ring-1 ring-foreground/10 transition hover:brightness-110"
+              className="rounded-lg bg-acc px-4 py-2.5 text-[13px] font-semibold text-background ring-1 ring-acc/30 transition hover:brightness-110"
             >
               Draft an email
             </Link>
             <Link
               to="/chat"
-              className="rounded-lg bg-panel2/80 px-4 py-2.5 text-[13px] font-medium text-foreground ring-1 ring-foreground/10 transition hover:bg-foreground/10"
+              className="rounded-lg bg-panel2 px-4 py-2.5 text-[13px] font-medium text-foreground ring-1 ring-line transition hover:bg-foreground/6"
             >
               Open the assistant
             </Link>
           </div>
         </section>
 
-        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {TOOLS.map((tool) => (
             <Link
               key={tool.to}
               to={tool.to}
-              className="group animate-rise rounded-2xl bg-panel/40 p-5 ring-1 ring-foreground/8 backdrop-blur-xl transition hover:bg-panel/70 hover:ring-acc/30"
+              className="group animate-rise rounded-2xl bg-panel p-5 ring-1 ring-line transition hover:bg-panel2 hover:ring-acc/30"
             >
               <div className="flex items-center justify-between">
                 <span className="grid size-9 place-items-center rounded-xl bg-acc/10 text-acc ring-1 ring-acc/20">
@@ -116,15 +116,15 @@ function Dashboard() {
           ))}
         </div>
 
-        <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <section className="animate-rise rounded-2xl bg-panel/40 p-5 ring-1 ring-foreground/8 backdrop-blur-xl lg:col-span-2">
+        <div className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-3">
+          <section className="animate-rise rounded-2xl bg-panel p-5 ring-1 ring-line lg:col-span-2">
             <p className="label-mono mb-4">Recent outputs</p>
             {history.length === 0 ? (
               <p className="text-[13px] text-muted-foreground">
                 Nothing yet — whatever you generate will show up here.
               </p>
             ) : (
-              <ul className="divide-y divide-line/70">
+              <ul className="divide-y divide-line">
                 {history.slice(0, 6).map((entry) => (
                   <li key={entry.id} className="flex items-center gap-4 py-3">
                     <span className="w-16 shrink-0 font-mono text-[10px] uppercase text-acc">
@@ -143,23 +143,23 @@ function Dashboard() {
             )}
           </section>
 
-          <section className="animate-rise flex flex-col rounded-2xl bg-panel/40 p-5 ring-1 ring-foreground/8 backdrop-blur-xl">
+          <section className="animate-rise flex flex-col rounded-2xl bg-panel p-5 ring-1 ring-line">
             <p className="label-mono mb-4">This browser</p>
             <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-background/40 p-4 ring-1 ring-foreground/5">
+              <div className="rounded-xl bg-background p-4 ring-1 ring-line">
                 <p className="font-display text-[24px] font-bold tracking-tight">
                   {history.length}
                 </p>
                 <p className="mt-1 text-[12px] text-muted-foreground">Saved outputs</p>
               </div>
-              <div className="rounded-xl bg-background/40 p-4 ring-1 ring-foreground/5">
+              <div className="rounded-xl bg-background p-4 ring-1 ring-line">
                 <p className="font-display text-[24px] font-bold tracking-tight">{threadCount}</p>
                 <p className="mt-1 text-[12px] text-muted-foreground">Conversations</p>
               </div>
             </div>
             <Link
               to="/chat"
-              className="mt-4 flex items-center gap-2 rounded-xl bg-background/40 p-4 text-[13px] ring-1 ring-foreground/5 transition hover:ring-acc/30"
+              className="mt-3 flex items-center gap-2 rounded-xl bg-background p-4 text-[13px] ring-1 ring-line transition hover:ring-acc/30"
             >
               <MessageSquare className="size-4 text-acc" />
               Continue a conversation
