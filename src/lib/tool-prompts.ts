@@ -27,11 +27,11 @@ OUTPUT FORMAT (exactly):
 
 <closing line + sign-off placeholder "[Your name]">
 CONSTRAINTS: Match the requested tone and audience precisely. Keep the body under 200 words. No subject line variants.`,
-        prompt: `TONE: ${fields.tone}
-AUDIENCE: ${fields.audience}
-LENGTH: ${fields.length}
+        prompt: `TONE: ${fields['tone']}
+AUDIENCE: ${fields['audience']}
+LENGTH: ${fields['length']}
 KEY POINTS TO COVER:
-${fields.context}`,
+${fields['context']}`,
       };
 
     case "notes":
@@ -51,10 +51,10 @@ One paragraph, max 3 sentences.
 ### Open questions
 - unresolved items or risks.
 CONSTRAINTS: Only use content present in the notes. Preserve owner names exactly as written.`,
-        prompt: `MEETING TITLE: ${fields.title || "[to confirm]"}
-ATTENDEES: ${fields.attendees || "[to confirm]"}
+        prompt: `MEETING TITLE: ${fields['title'] || "[to confirm]"}
+ATTENDEES: ${fields['attendees'] || "[to confirm]"}
 RAW NOTES / TRANSCRIPT:
-${fields.notes}`,
+${fields['notes']}`,
       };
 
     case "planner":
@@ -73,10 +73,10 @@ A markdown table with columns: # | Task | Priority (High/Medium/Low) | Estimate 
 ### Focus note
 One sentence on the single most important outcome.
 CONSTRAINTS: Keep every task the user listed — never drop one silently. Fit the plan inside the stated working hours.`,
-        prompt: `WORKING HOURS: ${fields.hours}
-WORK STYLE / CONSTRAINTS: ${fields.constraints || "none stated"}
+        prompt: `WORKING HOURS: ${fields['hours']}
+WORK STYLE / CONSTRAINTS: ${fields['constraints'] || "none stated"}
 TASK LIST (one per line, with any deadlines given):
-${fields.tasks}`,
+${fields['tasks']}`,
       };
 
     case "research":
@@ -96,10 +96,10 @@ Max 3 sentences answering the question directly.
 ### Confidence and gaps
 One or two sentences on how reliable this is and what should be verified with primary sources.
 CONSTRAINTS: You have no live web access — rely on general knowledge, never fabricate citations, statistics, URLs or quotations. Flag anything time-sensitive as needing verification.`,
-        prompt: `RESEARCH QUESTION: ${fields.topic}
-DEPTH: ${fields.depth}
-AUDIENCE FOR THE BRIEFING: ${fields.audience}
-EXTRA CONTEXT: ${fields.context || "none"}`,
+        prompt: `RESEARCH QUESTION: ${fields['topic']}
+DEPTH: ${fields['depth']}
+AUDIENCE FOR THE BRIEFING: ${fields['audience']}
+EXTRA CONTEXT: ${fields['context'] || "none"}`,
       };
   }
 }
