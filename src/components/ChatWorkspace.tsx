@@ -241,7 +241,7 @@ function ChatSurface({
           <ConversationScrollButton />
         </Conversation>
 
-        <div className="border-t border-line/70 p-4 sm:p-5">
+        <div className="border-t border-line p-4 sm:p-5">
           <PromptInput
             onSubmit={(_message, event) => {
               event.preventDefault();
