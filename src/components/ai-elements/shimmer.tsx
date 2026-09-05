@@ -61,8 +61,9 @@ const ShimmerComponent = ({
           "--spread": `${dynamicSpread}px`,
           backgroundImage:
             "var(--bg), linear-gradient(var(--color-muted-foreground), var(--color-muted-foreground))",
-        } as unknown as MotionProps["style"]
+        } as NonNullable<MotionProps["style"]>
       }
+
 
       transition={{
         duration,
