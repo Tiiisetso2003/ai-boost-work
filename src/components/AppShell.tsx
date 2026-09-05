@@ -21,7 +21,7 @@ function AuroraBackdrop() {
   );
 }
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <nav className="mt-6 space-y-0.5">
       {NAV.map((item) => (
@@ -51,7 +51,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarInner({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col p-4">
       <div className="flex items-center gap-2.5 px-2 py-2">
