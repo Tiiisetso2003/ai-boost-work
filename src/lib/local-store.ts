@@ -98,6 +98,13 @@ export function ensureThread(id: string): ChatThread {
   return thread;
 }
 
+/** Returns the most recent thread, creating a first one when none exist. */
+export function ensureFirstThread(): ChatThread {
+  const threads = loadThreads();
+  return threads[0] ?? createThread();
+}
+
+
 export function persistThreadMessages(id: string, messages: UIMessage[]) {
   const threads = loadThreads();
   const index = threads.findIndex((t) => t.id === id);
